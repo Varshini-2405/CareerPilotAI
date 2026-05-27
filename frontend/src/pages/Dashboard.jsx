@@ -110,10 +110,10 @@ function Dashboard() {
           <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-full blur-xl group-hover:bg-amber-500/10 transition-all duration-300"></div>
           <div className="text-sm text-slate-500 font-medium font-mono uppercase tracking-wider">Hiring Hotspot</div>
           <div className="text-2xl font-black mt-2 truncate tracking-tight">
-            {data.top_locations[0] ? data.top_locations[0].location.split(',')[0] : 'None'}
+            {data.top_locations && data.top_locations[0] ? data.top_locations[0].location.split(',')[0] : 'None'}
           </div>
           <div className="text-xs text-amber-400 font-semibold mt-1 flex items-center gap-1">
-            <span>📍</span> {data.top_locations[0]?.count.toLocaleString()} indexed positions
+            <span>📍</span> {data.top_locations && data.top_locations[0] ? data.top_locations[0].count.toLocaleString() : 0} indexed positions
           </div>
         </div>
       </div>
@@ -224,17 +224,21 @@ function Dashboard() {
         <div className="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6">
           <h3 className="text-lg font-bold text-slate-200 mb-4">Hiring Hub Locations</h3>
           <div className="divide-y divide-slate-800">
-            {data.top_locations.map((item, index) => (
-              <div key={index} className="flex justify-between items-center py-3.5 first:pt-0 last:pb-0">
-                <div className="flex items-center gap-3">
-                  <span className="text-lg text-indigo-400">📍</span>
-                  <span className="font-medium text-slate-300">{item.location}</span>
+            {data.top_locations && data.top_locations.length > 0 ? (
+              data.top_locations.map((item, index) => (
+                <div key={index} className="flex justify-between items-center py-3.5 first:pt-0 last:pb-0">
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg text-indigo-400">📍</span>
+                    <span className="font-medium text-slate-300">{item.location}</span>
+                  </div>
+                  <span className="px-2.5 py-1 text-xs font-bold rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/10 font-mono">
+                    {item.count} Openings
+                  </span>
                 </div>
-                <span className="px-2.5 py-1 text-xs font-bold rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/10 font-mono">
-                  {item.count} Openings
-                </span>
-              </div>
-            ))}
+              ))
+            ) : (
+              <div className="text-slate-500 text-xs py-4 text-center">No locations indexed yet</div>
+            )}
           </div>
         </div>
       </div>
