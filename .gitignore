@@ -1,7 +1,7 @@
 # Databases
-careerpilot.db
 *.db
 *.sqlite
+!careerpilot.db
 
 # Datasets & Heavy Archives
 data/
