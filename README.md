@@ -4,7 +4,7 @@
 
 ## 🌐 Live Links
 ### Frontend
-https://career-pilot-ai-zeta.vercel.app/ ( Click here to see the Career Platfrom)
+https://career-pilot-ai-zeta.vercel.app/  (Click here to see the Career Platfrom)
 
 ### Backend API
 https://careerpilotai-uf87.onrender.com/
