@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import apiClient from '../services/api';
 
 function CareerPlanner() {
   const [skills, setSkills] = useState('Python, SQL, HTML');
@@ -22,7 +22,7 @@ function CareerPlanner() {
     formData.append('interest', interest);
     formData.append('experience_years', experienceYears);
 
-    axios.post('http://127.0.0.1:8000/api/ml/career-recommendation', formData)
+    apiClient.post('/api/ml/career-recommendation', formData)
       .then(response => {
         setRecommendation(response.data);
         setLoading(false);

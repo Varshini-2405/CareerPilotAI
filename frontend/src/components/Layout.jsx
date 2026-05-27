@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import apiClient from '../services/api';
 
 function Layout() {
   const [apiStatus, setApiStatus] = useState('checking');
@@ -9,7 +9,7 @@ function Layout() {
   useEffect(() => {
     // Poll backend health status
     const checkHealth = () => {
-      axios.get('http://127.0.0.1:8000/health')
+      apiClient.get('/health')
         .then(() => setApiStatus('online'))
         .catch(() => setApiStatus('offline'));
     };

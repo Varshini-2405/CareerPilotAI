@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import apiClient from '../services/api';
 
 function ResumeAnalyzer() {
   const [file, setFile] = useState(null);
@@ -43,7 +43,7 @@ function ResumeAnalyzer() {
     formData.append('file', file);
     formData.append('target_job', targetJob);
 
-    axios.post('http://127.0.0.1:8000/api/ml/resume-analysis', formData, {
+    apiClient.post('/api/ml/resume-analysis', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

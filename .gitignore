@@ -1,0 +1,53 @@
+# Databases
+careerpilot.db
+*.db
+*.sqlite
+
+# Datasets & Heavy Archives
+data/
+*.zip
+*.tar.gz
+*.csv
+
+# Dependency Directories
+node_modules/
+bower_components/
+
+# Build & Output Caches
+dist/
+dist-ssr/
+build/
+*.local
+
+# Environment Variables
+.env
+.env*.local
+
+# Python Caches & Virtual Envs
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Editor Caches
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

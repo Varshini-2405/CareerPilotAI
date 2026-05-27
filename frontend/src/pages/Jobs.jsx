@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from '../services/api';
 
 const isIndianLocation = (location) => {
   if (!location) return true;
@@ -50,7 +50,7 @@ function Jobs() {
   const fetchJobs = () => {
     setLoading(true);
     setError(null);
-    let url = `http://127.0.0.1:8000/api/jobs?page=${page}&limit=8`;
+    let url = `/api/jobs?page=${page}&limit=8`;
     
     if (search) url += `&search=${encodeURIComponent(search)}`;
     if (domain) url += `&domain=${encodeURIComponent(domain)}`;
@@ -58,7 +58,7 @@ function Jobs() {
     if (location) url += `&location=${encodeURIComponent(location)}`;
     if (remote !== '') url += `&remote=${remote === 'true'}`;
 
-    axios.get(url)
+    apiClient.get(url)
       .then(response => {
         setJobs(response.data.jobs);
         setTotalCount(response.data.total);
@@ -67,7 +67,7 @@ function Jobs() {
       })
       .catch(err => {
         console.error('Error fetching jobs:', err);
-        setError('Failed to connect to FastAPI server. Make sure the backend is running at http://127.0.0.1:8000.');
+        setError('Failed to connect to backend server. Make sure the backend is running.');
         setLoading(false);
       });
   };
@@ -88,7 +88,7 @@ function Jobs() {
   useEffect(() => {
     if (selectedJobId) {
       setDetailsLoading(true);
-      axios.get(`http://127.0.0.1:8000/api/jobs/${selectedJobId}`)
+      apiClient.get(`/api/jobs/${selectedJobId}`)
         .then(response => {
           setSelectedJob(response.data);
           setDetailsLoading(false);

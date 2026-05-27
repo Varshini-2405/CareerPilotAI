@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from '../services/api';
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar, Legend, Cell, ComposedChart, Line
@@ -64,7 +64,7 @@ function SalaryInsights() {
   };
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/salaries/insights')
+    apiClient.get('/api/salaries/insights')
       .then(response => {
         setInsights(response.data);
         setLoading(false);
@@ -81,7 +81,7 @@ function SalaryInsights() {
     setPredictLoading(true);
     setPrediction(null);
 
-    axios.get(`http://127.0.0.1:8000/api/salaries/predict?domain=${targetDomain}&experience_level=${targetExperience}`)
+    apiClient.get(`/api/salaries/predict?domain=${targetDomain}&experience_level=${targetExperience}`)
       .then(response => {
         const data = response.data;
         if (data) {
